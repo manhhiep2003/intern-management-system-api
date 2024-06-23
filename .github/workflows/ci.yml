@@ -15,7 +15,7 @@ jobs:
       mysql:
         image: mysql:8.4.0
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_URL }}
+          MYSQL_ROOT_PASSWORD: 12345
           MYSQL_DATABASE: ims
         ports:
           - 3306:3306
@@ -48,6 +48,6 @@ jobs:
     - name: Run tests
       run: ./mvnw test
       env:
-        SPRING_DATASOURCE_URL: ${{ secrets.DB_URL }}
-        SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
-        SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/ims
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: 12345
