@@ -2,6 +2,8 @@ package com.sailing.ims.service;
 
 import com.sailing.ims.dto.UserCreationRequest;
 import com.sailing.ims.dto.UserUpdateRequest;
+import com.sailing.ims.exception.AppException;
+import com.sailing.ims.exception.ErrorCode;
 import com.sailing.ims.model.User;
 import com.sailing.ims.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,8 @@ public class UserService {
     public User createUser(UserCreationRequest userCreationRequest) {
         User user = new User();
 
-        if (userRepository.existsByUsername(user.getUsername()))
-            throw new RuntimeException("User existed");
+        if (userRepository.existsByUsername(userCreationRequest.getUsername()))
+            throw new AppException(ErrorCode.USER_EXISTED);
 
         user.setFirstName(userCreationRequest.getFirstName());
         user.setLastName(userCreationRequest.getLastName());

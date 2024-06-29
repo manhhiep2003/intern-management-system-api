@@ -16,9 +16,9 @@ public class UserCreationRequest {
     @Email(message = "Invalid Email")
     private String email;
 
-    @Size(min = 3, message = "Username must be at least 3 characters")
+    @Size(min = 3, message = "INVALID_USERNAME")
     private String username;
 
-    @Size(min = 8, message = "Password must be at least 8 characters")
+    @Size(min = 8, message = "INVALID_PASSWORD")
     private String password;
 }

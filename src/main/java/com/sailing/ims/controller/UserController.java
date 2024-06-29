@@ -1,5 +1,6 @@
 package com.sailing.ims.controller;
 
+import com.sailing.ims.dto.ApiResponse;
 import com.sailing.ims.dto.UserCreationRequest;
 import com.sailing.ims.dto.UserUpdateRequest;
 import com.sailing.ims.model.User;
@@ -18,8 +19,10 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public User createUser(@RequestBody @Valid UserCreationRequest userCreationRequest) {
-        return userService.createUser(userCreationRequest);
+    public ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest userCreationRequest) {
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(userService.createUser(userCreationRequest));
+        return apiResponse;
     }
 
     @GetMapping
